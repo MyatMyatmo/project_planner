@@ -1,5 +1,5 @@
 <template>
-    <div class="project">
+    <div class="project" :class="{complete:project.complete}">
         <div class="flexing">
             <div>
                 <h3 @click="showDetail=!showDetail">{{project.title}}</h3>
@@ -11,12 +11,13 @@
                 <span class="material-icons">
                 edit
                 </span>
-                <span class="material-icons">
+                <span class="material-icons" @click="completePost">
                 done
                 </span>
             </div>
         </div>
         <p v-if="showDetail">{{project.detail}}</p>
+        {{project.complete}}
     </div>
 </template>
 
@@ -34,7 +35,27 @@ export default {
             let deleteRoute = this.api+this.project.id
             fetch(deleteRoute,{method:"DELETE"})
             .then(()=>{
-                this.$emit('delete',this.project.id)
+                this.$emit('delete',this.project.id) // data parse to parent vue
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+        },
+        completePost(){
+            let completeRoute = 'http://localhost:3000/projects/'+this.project.id;
+            fetch(completeRoute,{
+                method:"PATCH",
+                headers:{
+                    "Content-Type":"application/json" //let json format
+                },
+                body:JSON.stringify(
+                    {
+                       complete:!this.project.complete
+                    }
+                )
+            })
+            .then(()=>{
+                this.$emit('complete',this.project.id);
             })
             .catch((error)=>{
                 console.log(error);
@@ -68,4 +89,13 @@ span {
 span:hover {
     color: #777;
 }
+.complete {
+    border-left-color: green;
+}
 </style>
+
+//filter, map (array function)  => return new array
+
+// find() not like filter, map  => return existing object
+
+// not update all data in one object (use patch)
