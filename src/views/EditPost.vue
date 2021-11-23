@@ -1,41 +1,53 @@
 <template>
-<h1>Add Post</h1>
-    <form @submit.prevent="addPost">
+    <h1>Edit Post</h1>
+    <form @submit.prevent="updatePost">
         <label>Post Title</label>
         <input type="text" v-model="title">
         <label>Post Detail</label>
-        <input type="text" v-model="detail">
-        <button>Add Post</button>
+        <textarea v-model="detail"></textarea>
+        <button>Update Post</button>
     </form>
 </template>
 
 <script>
 export default {
+    props:['id'],
     data(){
         return{
             title:"",
-            detail:""
+            detail:"",
         }
     },
-    methods:{
-        addPost(){
-            let addPostRoute = 'http://localhost:3000/projects';
-            fetch(addPostRoute, {
-                method:"POST",
+    mounted(){//get data
+        fetch('http://localhost:3000/projects/'+this.id)
+        .then((res)=>{
+            return res.json();
+        })
+        .then((datas)=>{
+            this.title = datas.title,
+            this.detail = datas.detail
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    },
+    methods:{//update data
+        updatePost(){
+            fetch('http://localhost:3000/projects/'+this.id, {
+                method:"PATCH",
                 headers:{
-                    "Content-Type":"application/json" //let json format
+                    "Content-type":"application/json"
                 },
                 body:JSON.stringify({
                     title:this.title,
                     detail:this.detail,
-                    complete:false
                 })
             })
             .then(()=>{
-                this.$router.push({name:'Home'});
+                this.$router.push({name:"Home"})
             })
-            .catch((error)=>{
-                console.log(error);
+            .catch((err)=>{
+                console.log(err);
             })
         }
     }

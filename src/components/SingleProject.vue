@@ -8,9 +8,11 @@
                 <span class="material-icons" @click="deletePost">
                 delete
                 </span>
-                <span class="material-icons">
-                edit
-                </span>
+                <router-link :to="{name:'EditPost',params:{id:project.id}}">
+                    <span class="material-icons">
+                        edit
+                    </span>
+                </router-link>
                 <span class="material-icons" @click="completePost">
                 done
                 </span>
