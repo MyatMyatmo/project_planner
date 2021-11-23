@@ -20,9 +20,21 @@
     },
     {
       "title": "Post 4",
-      "detail": "Post detail",
+      "detail": "Post detail 4",
       "complete": true,
       "id": 4
+    },
+    {
+      "title": "Post 5",
+      "detail": "Post Detail 5",
+      "complete": false,
+      "id": 5
+    },
+    {
+      "title": "Post 6",
+      "detail": "Post detail 6",
+      "complete": true,
+      "id": 6
     }
   ]
 }

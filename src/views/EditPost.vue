@@ -3,8 +3,10 @@
     <form @submit.prevent="updatePost">
         <label>Post Title</label>
         <input type="text" v-model="title">
+        <p v-if="titleRequired==true" class="error-message">Title is Required</p>
         <label>Post Detail</label>
         <textarea v-model="detail"></textarea>
+        <p v-if="detailRequired==true" class="error-message">Detail is Required</p>
         <button>Update Post</button>
     </form>
 </template>
@@ -16,6 +18,8 @@ export default {
         return{
             title:"",
             detail:"",
+            titleRequired: false,
+            detailRequired: false,
         }
     },
     mounted(){//get data
@@ -33,22 +37,31 @@ export default {
     },
     methods:{//update data
         updatePost(){
-            fetch('http://localhost:3000/projects/'+this.id, {
-                method:"PATCH",
-                headers:{
-                    "Content-type":"application/json"
-                },
-                body:JSON.stringify({
-                    title:this.title,
-                    detail:this.detail,
+            if(!this.title && this.detail) {
+                this.titleRequired = true;
+            } else if (!this.detail && this.title){
+                this.detailRequired = true;
+            } else if (!this.title && !this.detail) {
+                this.titleRequired = true;
+                this.detailRequired = true;
+            } else {
+                fetch('http://localhost:3000/projects/'+this.id, {
+                    method:"PATCH",
+                    headers:{
+                        "Content-type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        title:this.title,
+                        detail:this.detail,
+                    })
                 })
-            })
-            .then(()=>{
-                this.$router.push({name:"Home"})
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
+                .then(()=>{
+                    this.$router.push({name:"Home"})
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+            }
         }
     }
 }
@@ -92,5 +105,8 @@ export default {
         border: 0;
         border-radius: 6px;
         font-size: 16px;
+    }
+    .error-message {
+        color: red;
     }
 </style>

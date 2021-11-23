@@ -6,7 +6,6 @@
       <SingleProject :project="project" @delete="deletePost" @complete="completePost"></SingleProject>
     </div>
   </div>
-  {{current}}
 </template>
 
 <script>
