@@ -4,7 +4,7 @@
         <label>Post Title</label>
         <input type="text" v-model="title">
         <label>Post Detail</label>
-        <input type="text" v-model="detail">
+        <textarea v-model="detail"></textarea>
         <button>Add Post</button>
     </form>
 </template>
