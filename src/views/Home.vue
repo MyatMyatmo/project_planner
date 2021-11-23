@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Home</h1>
     <FilterNav @filterValue="current=$event" :current="current"></FilterNav>
-    <div v-for="project in projects" :key="project.id" >
+    <div v-for="project in filterPost" :key="project.id" >
       <SingleProject :project="project" @delete="deletePost" @complete="completePost"></SingleProject>
     </div>
   </div>
@@ -17,39 +17,54 @@ import SingleProject from '../components/SingleProject'
 export default {
   name: 'Home',
   components: {
-    FilterNav,
-    SingleProject,
+      FilterNav,
+      SingleProject,
   },
   data(){
-    return{
-      projects:[],
-      current:"all"
-    }
+      return{
+          projects:[],
+          current:"all"
+      }
   },
   methods:{
-    deletePost(id){
-      this.projects=this.projects.filter(project=>{
-        return project.id != id;
-      })
-    },
-    completePost(id){
-      let findPost=this.projects.find(project=>{
-        return project.id === id;
-      });
-      findPost.complete = !findPost.complete;
+      deletePost(id){
+          this.projects=this.projects.filter(project=>{
+              return project.id != id;
+          })
+      },
+      completePost(id){
+          let findPost=this.projects.find(project=>{
+              return project.id === id;
+          });
+          findPost.complete = !findPost.complete;
+      }
+  },
+  computed:{
+    filterPost(){
+        if(this.current == 'complete') {
+            return this.projects.filter((p)=>{
+                return p.complete
+            })
+        }
+        if(this.current == 'uncomplete'){
+            return this.projects.filter((p)=>{
+                return !p.complete
+            })
+        }
+        return this.projects;
     }
   },
   mounted(){
-    fetch('http://localhost:3000/projects')
-    .then((response)=>{
-      return response.json();
-    })
-    .then((datas)=>{
-      this.projects = datas
-    })
-    .catch((error)=>{
-      return error;
-    })
+      fetch('http://localhost:3000/projects')
+      .then((response)=>{
+          return response.json();
+      })
+      .then((datas)=>{
+          this.projects = datas
+      })
+      .catch((error)=>{
+          return error;
+      })
   }
 }
 </script>
