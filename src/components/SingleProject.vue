@@ -67,34 +67,7 @@ export default {
 }
 </script>
 
-<style>
-.project {
-    padding:20px;
-    background-color: #f2f2f2;
-    margin: 10px;
-    border-left: 6px solid crimson;
-    border-radius: 8px;
-}
-h3 {
-    color:indigo;
-    cursor: pointer;
-}
-.flexing {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-span {
-    margin-left: 6px;
-    cursor: pointer;
-}
-span:hover {
-    color: #777;
-}
-.complete {
-    border-left-color: green;
-}
-</style>
+<style scoped lang="css" src="@/assets/singleProject.css"></style>
 
 //filter, map (array function)  => return new array
 

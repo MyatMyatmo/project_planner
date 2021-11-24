@@ -2,7 +2,7 @@
   "projects": [
     {
       "title": "Post 1",
-      "detail": "Post detail",
+      "detail": "Post detail 1",
       "complete": false,
       "id": 1
     },
@@ -35,6 +35,12 @@
       "detail": "Post detail 6",
       "complete": true,
       "id": 6
+    },
+    {
+      "title": "Post 7",
+      "detail": "Post detail 7",
+      "complete": false,
+      "id": 7
     }
   ]
 }
