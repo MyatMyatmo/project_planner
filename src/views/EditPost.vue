@@ -2,13 +2,14 @@
     <h1>Edit Post</h1>
     <form @submit.prevent="updatePost">
         <label>Post Title</label>
-        <input type="text" v-model="title">
+        <input type="text" v-model="title" @mousedown="hideTitleError()">
         <p v-if="titleRequired==true" class="error-message">Title is Required</p>
         <label>Post Detail</label>
-        <textarea v-model="detail"></textarea>
+        <textarea v-model="detail" @mousedown="hideDetailError()"></textarea>
         <p v-if="detailRequired==true" class="error-message">Detail is Required</p>
         <div class="flexing">
-            <button @click="cancelBtn" class="cancel">Cancel</button>
+            <a :href="'/'" class="cancel">Cancel</a>
+            <!-- <a href="#" class="cancel" @click.prevent="cancelUpdateBtn">Cancel</a> -->
             <button class="update">Update Post</button>
         </div>
     </form>
@@ -39,9 +40,15 @@ export default {
         })
     },
     methods:{//update data
-        cancelBtn(){
-            this.$route.push({name:"Home"})
+        hideTitleError(){
+            this.titleRequired = false;
         },
+        hideDetailError(){
+            this.detailRequired = false;
+        },
+        // cancelUpdateBtn(){
+        //     this.$route.push({name:"Home"});
+        // },
         updatePost(){
             if(!this.title && this.detail) {
                 this.titleRequired = true;

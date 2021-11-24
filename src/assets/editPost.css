@@ -39,6 +39,18 @@ form button {
     border-radius: 6px;
     font-size: 16px;
     width: 120px;
+    cursor: pointer;
+}
+a {
+    margin: 20px 10px auto;
+    color: white;
+    padding: 10px;
+    border: 0;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
 }
 .update {
     color: white;

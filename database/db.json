@@ -35,12 +35,6 @@
       "detail": "Post detail 6",
       "complete": true,
       "id": 6
-    },
-    {
-      "title": "Post 7",
-      "detail": "Post detail 7",
-      "complete": false,
-      "id": 7
     }
   ]
 }

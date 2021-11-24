@@ -2,10 +2,10 @@
 <h1>Add Post</h1>
     <form @submit.prevent="addPost">
         <label>Post Title</label>
-        <input type="text" v-model="title">
+        <input type="text" v-model="title" @mousedown="hideTitleError()">
         <p v-if="titleRequired==true" class="error-message">Title is Required</p>
         <label>Post Detail</label>
-        <textarea v-model="detail"></textarea>
+        <textarea v-model="detail" @mousedown="hideDetailError()"></textarea>
         <p v-if="detailRequired==true" class="error-message">Detail is Required</p>
         <div class="flexing">
             <button @click="cancelBtn" class="cancel">Cancel</button>
@@ -25,6 +25,12 @@ export default {
         }
     },
     methods:{
+        hideTitleError(){
+            this.titleRequired = false;
+        },
+        hideDetailError(){
+            this.detailRequired = false;
+        },
         cancelBtn(){
             this.$router.push({name:"Home"});
         },
