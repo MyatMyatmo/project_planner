@@ -1,12 +1,12 @@
 <template>
   <Navbar></Navbar>
-  <router-view/>
+  <router-view />
 </template>
 <script>
-import Navbar from './components/Navbar'
+import Navbar from "./components/Navbar";
 export default {
   components: { Navbar },
-}
+};
 </script>
 <style>
 #app {
@@ -14,7 +14,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 600px;
-  margin:0 auto;
+  margin: 0 auto;
   color: #2c3e50;
 }
 </style>
