@@ -1,3 +1,16 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "title": "post 1",
+      "detail": "post detail",
+      "complete": true,
+      "id": 1
+    },
+    {
+      "title": "post 2",
+      "detail": "post detail",
+      "complete": false,
+      "id": 2
+    }
+  ]
 }

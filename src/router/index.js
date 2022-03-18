@@ -5,11 +5,12 @@ import {
 import Home from '../views/Home.vue'
 import AddPost from '../views/AddPost.vue'
 import EditPost from '../views/EditPost.vue'
+import Login from '../views/Login.vue'
 
 const routes = [{
         path: '/',
-        name: 'Home',
-        component: Home
+        name: 'Login',
+        component: Login
     },
     {
         path: '/addPost',
@@ -21,6 +22,16 @@ const routes = [{
         name: 'EditPost',
         component: EditPost,
         props: true,
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
+    {
+        path: '/home',
+        name: 'Home',
+        component: Home
     }
 ]
 
